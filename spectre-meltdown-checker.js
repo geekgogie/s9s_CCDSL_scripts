@@ -8,6 +8,9 @@ var ADVICE_OK="Kernel is not affected by Meltdown/Spectre." ;
 
 /**
  * 
+ * @title  String    Title of the alarm
+ * @message String   Message for the alarm
+ * @recommendation String  Recommendation for this alarm.
  * @return Returns the alarm which we can use to set the alarm to raise
  */
 function myAlarm(title, message, recommendation)
@@ -50,13 +53,14 @@ function main()
         
         var jsonReply = JSON::parse(reply.toString());
         var msg = "";
+		var myAlarmId = {};
         
         if (!retval["success"]) { //shell script is not installed properly.
             if (reply.empty())  {
                 msg  = "<br />Empty reply from the command. It looks like you have not "
                        "setup the shell script yet. You can get the shell script from "
-                       "https://raw.githubusercontent.com/speed47/spectre-meltdown-checker/master/spectre-meltdown-checker.sh."
-                       "<br /> or run &quot;sudo wget https://raw.githubusercontent.com/speed47/spectre-meltdown-checker/master/spectre-meltdown-checker.sh -P /usr/bin/;"
+                       "https://meltdown.ovh"
+                       "<br /> or run &quot;sudo wget https://meltdown.ovh -O /usr/bin/spectre-meltdown-checker.sh;"
                        " sudo chmod +x /usr/bin/spectre-meltdown-checker.sh&quot;";
                 advice.setSeverity(Warning);
                 advice.setJustification(msg);
@@ -149,10 +153,9 @@ function main()
 		                advice.setJustification(msg);
 		                advice.setAdvice(recommendation);
         
-			             var myAlarmId = myAlarm("Metldown/Spectre Affected!", msg, "");
-			             var sentMessage;
+			             myAlarmId = myAlarm("Metldown/Spectre Affected!", msg, recommendation);
 						 // Let's raise an alarm.
-                         sentMessage = host.raiseAlarm(myAlarmId, Warning);
+                         host.raiseAlarm(myAlarmId, Warning);
 		            } else {
 		                advice.setSeverity(Ok);
 		                advice.setJustification(
