@@ -131,14 +131,14 @@ function main()
 			        retval = host.system(shell);
 			        reply = retval["result"];
 					jsonStr = '{"list":' + reply.toString() + '}';
-			        jsonSpectreMeltdownResult = JSON::parse(jsonStr);
+			        mapSpectreMeltdownResult = JSON::parse(jsonStr);
 					
-					for (ndex=0; ndex < jsonSpectreMeltdownResult["list"].size(); ndex++) {
-					    if (jsonSpectreMeltdownResult["list"][ndex]["VULNERABLE"]) {
+					for (ndex=0; ndex < mapSpectreMeltdownResult["list"].size(); ndex++) {
+					    if (mapSpectreMeltdownResult["list"][ndex]["VULNERABLE"]) {
 			                msg  += "<br />Host is affected by " 
-								 + jsonSpectreMeltdownResult["list"][ndex]["CVE"] + "/"
-								 + jsonSpectreMeltdownResult["list"][ndex]["NAME"] + ". "
-								 + "Suggested action: &quot;" + jsonSpectreMeltdownResult["list"][ndex]["INFOS"] + "&quot;";
+								 + mapSpectreMeltdownResult["list"][ndex]["CVE"] + "/"
+								 + mapSpectreMeltdownResult["list"][ndex]["NAME"] + ". "
+								 + "Suggested action: &quot;" + mapSpectreMeltdownResult["list"][ndex]["INFOS"] + "&quot;";
 							
 			            } 
 					}
