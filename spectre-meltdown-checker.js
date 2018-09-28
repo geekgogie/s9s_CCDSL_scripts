@@ -18,9 +18,9 @@ function myAlarm(title, message, recommendation)
   return Alarm::alarmId(
         Node, 
 	  	true,
-        title, //"Computer is on fire",
-        message, // "The computer is on fire, it is on flames.",
-        recommendation //"Pour some water on it."
+        title, 
+        message, 
+        recommendation
   );
 }
 
