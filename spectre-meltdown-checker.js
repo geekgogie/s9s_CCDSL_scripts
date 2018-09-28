@@ -44,14 +44,11 @@ function main()
         print("==========================");
         map         = host.toMap();
         var advice = new CmonAdvice();
-
-        
-	    var shell = "test -e /usr/bin/spectre-meltdown-checker.sh";
-	    
+		
+	    var shell = "test -e /usr/bin/spectre-meltdown-checker.sh";	    
         var retval = host.system(shell);
         var reply = retval["result"];
-        
-        var jsonReply = JSON::parse(reply.toString());
+		
         var msg = "";
 		var myAlarmId = {};
         
