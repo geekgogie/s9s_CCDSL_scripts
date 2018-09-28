@@ -16,10 +16,10 @@ var ADVICE_OK="Kernel is not affected by Meltdown/Spectre." ;
 function myAlarm(title, message, recommendation)
 {
   return Alarm::alarmId(
-        Node, 
+        Node,
 	  	true,
-        title, 
-        message, 
+        title,
+        message,
         recommendation
   );
 }
